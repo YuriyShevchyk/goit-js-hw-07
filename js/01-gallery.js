@@ -46,4 +46,12 @@ function onGalClick(evt) {
 
 }
 
+window.addEventListener("keydown", onEscClick);
+
+function onEscClick(evt){
+    if (evt.code === 'Escape'){
+        instance.close();
+    }
+}
+
 // console.log(galleryItems);
