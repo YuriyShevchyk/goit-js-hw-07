@@ -33,25 +33,30 @@ function onGalClick(evt) {
     if (!isImg) {
         return
     };
-    // baza//
+   
     // import * as basicLightbox from 'basiclightbox'
     const currentImg = evt.target.dataset.source;
-
     // console.log(currentImg);
 
     const instance = basicLightbox.create(`<img src="${currentImg}">`);
     // console.log(instance);
-
+    // {
+    //     onShow: (instance) =>
+    //         window.addEventListener("keydown", onEscClick),
+    //         onClose: (instance) =>
+    //             window.removeEventListener("keydown", onEscClick),}
+    // 
     instance.show();
 
 }
 
 window.addEventListener("keydown", onEscClick);
 
-function onEscClick(evt){
-    if (evt.code === 'Escape'){
-        instance.close();
+ function onEscClick(evt) {
+    if (evt.key === "Escape") {
+      instance.close();
     }
-}
+  }
+    // 
 
-// console.log(galleryItems);
+console.log(galleryItems);
