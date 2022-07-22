@@ -5,7 +5,7 @@ const gallery = document.querySelector(`.gallery`);
 const markUp = createImgMarkUp(galleryItems);
 
 
-// gallery.addEventListener(`click`, onGalClick);
+gallery.addEventListener(`click`, onGalClick);
 gallery.insertAdjacentHTML(`beforeend`, markUp);
 
 function createImgMarkUp(galleryItems) {
@@ -18,4 +18,11 @@ function createImgMarkUp(galleryItems) {
     return ImgNarkUp;
 }
 
+function onGalClick(evt) {
+    evt.preventDefault();
+    let gallery = new SimpleLightbox(".gallery__item", {
+        captionsData: "alt",
+        captionDely: 250,
+    });
+}
 console.log(galleryItems);
