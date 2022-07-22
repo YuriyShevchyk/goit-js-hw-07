@@ -5,7 +5,7 @@ const gallery = document.querySelector(`.gallery`);
 const markUp = createImgMarkUp(galleryItems);
 
 
-gallery.addEventListener(`click`, onGalClick);
+gallery.addEventListener(`click`, onGalleryClick);
 gallery.insertAdjacentHTML(`beforeend`, markUp);
 
 function createImgMarkUp(galleryItems) {
@@ -25,38 +25,28 @@ function createImgMarkUp(galleryItems) {
     return ImgNarkUp;
 }
 
-// console.log(ImgNarkUp);
-
-function onGalClick(evt) {
-    evt.preventDefault();
-    const isImg = evt.target.classList.contains('gallery__image');
-    if (!isImg) {
-        return
-    };
-   
-    // import * as basicLightbox from 'basiclightbox'
-    const currentImg = evt.target.dataset.source;
-    // console.log(currentImg);
-
-    const instance = basicLightbox.create(`<img src="${currentImg}">`);
-    // console.log(instance);
-    // {
-    //     onShow: (instance) =>
-    //         window.addEventListener("keydown", onEscClick),
-    //         onClose: (instance) =>
-    //             window.removeEventListener("keydown", onEscClick),}
-    // 
-    instance.show();
-
-}
-
-window.addEventListener("keydown", onEscClick);
-
- function onEscClick(evt) {
-    if (evt.key === "Escape") {
+function onGalleryClick(e) {
+  e.preventDefault();
+  if (!e.target.classList.contains("gallery__image")) {
+    return;
+  }
+  const instance = basicLightbox.create(
+    `
+    <img src="${e.target.dataset.source}">
+`,
+    {
+      onShow: (instance) =>
+        window.addEventListener("keydown", closeModalEscape),
+      onClose: (instance) =>
+        window.removeEventListener("keydown", closeModalEscape),
+    }
+  );
+  instance.show();
+  function closeModalEscape(e) {
+    if (e.key === "Escape") {
       instance.close();
     }
   }
-    // 
-
+}
 console.log(galleryItems);
+ 
