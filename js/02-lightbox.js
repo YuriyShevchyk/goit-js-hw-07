@@ -20,9 +20,11 @@ function createImgMarkUp(galleryItems) {
 
 function onGalClick(evt) {
     evt.preventDefault();
-    let gallery = new SimpleLightbox(".gallery__item", {
+    const gallery = new SimpleLightbox(".gallery__item", {
         captionsData: "alt",
         captionDely: 250,
     });
+    return gallery;
 }
 console.log(galleryItems);
+
