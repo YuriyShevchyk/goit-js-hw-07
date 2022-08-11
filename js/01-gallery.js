@@ -48,5 +48,5 @@ function onGalleryClick(e) {
     }
   }
 }
-console.log(galleryItems);
+
  
